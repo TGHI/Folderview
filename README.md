@@ -1,4 +1,4 @@
-folderview - The asp-based foldertree
+Folderview - The ASP-generated foldertree
 --------------
 This package includes:
 
@@ -10,7 +10,7 @@ highlight.js (http://softwaremaniacs.org/soft/highlight/)
 
 How-to
 --------------
-foldertree recursively scans a given folder(s) and creates a navigable folder tree.
+Folderview recursively scans a given folder(s) and creates a navigable folder tree.
 
 Pick your directory in **default.asp**
 
