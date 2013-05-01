@@ -26,7 +26,9 @@ This is found in **src/folders.asp**
   allowedTextExtensions = array("txt","js","css","xml")
   allowedImageExtensions = array("jpg","png","gif")
 ```
-  
+Disclaimer
+--------------
+I'm not an ASP/IIS guy.  There are some strange (but innocuous) bugs with some file extensions.  I'm not sure why at this time.
 
 Jargon
 --------------
