@@ -1,15 +1,7 @@
 Folderview - The ASP-generated foldertree
-==============
+--------------
 
-Cur
-
-This package includes:
-
-Twitter Bootstrap (http://twitter.github.io/bootstrap/)
-
-Zero Clipboard (http://jonrohan.github.io/ZeroClipboard/)
-
-highlight.js (http://softwaremaniacs.org/soft/highlight/)
+**Current Version: 0.65**
 
 How-to
 --------------
@@ -35,6 +27,15 @@ I'm not an ASP/IIS guy.  There are some strange (but innocuous) bugs with some f
 
 Jargon
 --------------
+
+This package includes:
+
+Twitter Bootstrap (http://twitter.github.io/bootstrap/)
+
+Zero Clipboard (http://jonrohan.github.io/ZeroClipboard/)
+
+highlight.js (http://softwaremaniacs.org/soft/highlight/)
+
 All other portions Copyright (C) 2013 Justin Renaud (tghidsgn@gmail.com)
 
 Folderview is licensed under the GNU General Public License version 3; see LICENCE.txt
