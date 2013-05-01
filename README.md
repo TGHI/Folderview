@@ -14,14 +14,14 @@ foldertree recursively scans a given folder(s) and creates a navigable folder tr
 
 Pick your directory in **default.asp**
 
-  ```ListFolderContents(Server.MapPath("your/directory/here"))```
+  ```ListFolderContents(Server.MapPath("your/directory/here"))
 
 Currently, Foldertree is setup to open certain files in a modal window for viewing instead of simply opening them as a hyperlink
 
 This is found in **src/folders.asp**
 
   ```allowedTextExtensions = array("txt","js","css","xml")
-  allowedImageExtensions = array("jpg","png","gif")```
+ ``` allowedImageExtensions = array("jpg","png","gif")
   
 
 Jargon
