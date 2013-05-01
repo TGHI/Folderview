@@ -16,7 +16,7 @@ Pick your directory in **default.asp**
   ListFolderContents(Server.MapPath("your/directory/here"))
 ```
 
-Currently, Foldertree opens user-specified files (images and text) in a modal window for viewing instead of simply opening them as a hyperlink.
+Foldertree opens user-specified files (images and text) in a modal window for viewing instead of simply opening them as a hyperlink.
 
 ![ScreenShot](https://raw.github.com/TGHI/Folderview/master/screenshots/screenshot-modal.png)
 
@@ -27,7 +27,7 @@ This is found in **src/folders.asp**
   allowedImageExtensions = array("jpg","png","gif")
 ```
 
-Allowed text extensions will also have syntax highlighting within the modal.
+Allowed text extensions will also have automatic syntax highlighting within the modal.
 
 ![ScreenShot](https://raw.github.com/TGHI/Folderview/master/screenshots/screenshot-highlight.png)
 
