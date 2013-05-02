@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en-gb">
 <head>
-<title>ERMAHGERD JERSTERN'S WERB 1 FERLDERS</title>
+<title>folderview</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap-responsive.min.css" type="text/css" />
