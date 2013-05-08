@@ -81,15 +81,17 @@ function folderNav(nav, intent, derp) {
     }, 350).toggleClass('open');
     icon.toggleClass('icon-minus');
     setPath(subFolder.parent().attr('data-type-path'));
-  }
+  
+  }else{
 
-  if (intent == "collapse") {
-    subFolder.css('display', 'none').removeClass('open');
-    icon.removeClass('icon-minus');
-  }
-  if (intent == "expand") {
-    subFolder.css('display', 'block').addClass('open');
-    icon.addClass('icon-minus');
+    if (intent == "collapse") {
+      subFolder.css('display', 'none').removeClass('open');
+      icon.removeClass('icon-minus');
+    }
+    if (intent == "expand") {
+      subFolder.css('display', 'block').addClass('open');
+      icon.addClass('icon-minus');
+    }
   }
 }
 
