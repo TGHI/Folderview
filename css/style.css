@@ -1,6 +1,6 @@
 html,body{background:#fff;height:100%}
 :focus{outline:0 !important}
-.container-fluid,.row-fluid{height:100%}\
+.container-fluid,.row-fluid{height:100%}
 
 .navbar{box-shadow:0 3px 5px 0 rgba(0,0,0,0.6)}
 .nav li{padding:6px 0}
