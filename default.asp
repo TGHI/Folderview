@@ -9,17 +9,17 @@
 <!DOCTYPE html>
 <html lang="en-gb">
 <head>
-<title>folderview</title>
+<title>fldrview</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap-responsive.min.css" type="text/css" />
 <link rel="stylesheet" href="css/highlight.css" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" />
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="js/highlight.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/zeroclipboard.min.js"></script>
-<script src="js/main.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/highlight.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/zeroclipboard.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>
 <div class="navbar-wrapper">
@@ -30,13 +30,13 @@
         <li class="divider-vertical"></li>
         <li><a id="dirOutput" href="#">\Justin</a></li>
       </ul>
-      <div class="pull-right" style="padding:15px">Version 0.6.5</div>
+      <div class="pull-right" style="padding:15px"><a class="modal-launch" data-mime-type="text/txt" data-file-size="woo, fldrvw!" data-target="#modalFrame" href="#" data-remote="changelog.txt">Version 0.6.5.2</a></div>
     </div>
   </div>
 </div>
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span5">
+    <div class="span12">
       <div class="left-column">
         <div class="toolbar">
           <button class="btn" id="openAll"><i class="icon-folder-open"></i> Expand all</button>

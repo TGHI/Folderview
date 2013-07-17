@@ -1,0 +1,56 @@
+
+  @package	fldrvw/folderview
+  @copyright	Copyright (C) 2013 Justin Renaud (tghidsgn@gmail.com)
+  @version	0.6.5.2 (2013-7-17)
+  @license	GNU General Public License version 3 or later
+
+
+  folderview version 0.6.5.2
+
+  - Update to bootstrap 2.3.2, jQuery 1.10.2
+  - Removed invalid character in style.css
+  
+  folderview version 0.6.5.1
+  
+  - Empty folders in tree are no longer clickable/expandable
+  - Folder path shown in navbar while drilling folders
+  - Changelog clickable from version number :P
+  
+  folderview version 0.6.1
+  
+  - js refactor, minimization
+  - fixed goof in js extension parsing (unused, but for future reference).
+  - removed some unecessary html elements
+  - css layout fixes
+  
+  folderview version 0.6.0
+
+  - Added filtering for filetype in vb, extensions are written to 'data-mime-type' tag.
+   (Removed file filtering from js)
+  - File sizes are now in kilobytes and megabytes as required.
+  - Fixed folderview overflow (scrollbar doesn't go off of the bottom of the document)
+  - Fixed extension filtering (extensions are at the end of the path, duh)
+  - Improved selectors for toggle event
+  - Added open all/close all buttons
+  - New nav bar, spiffy logo
+
+  folderview version 0.4.1
+
+  - Fixed clipboard button positioning after modal is destroyed
+  - Clipboard button only appears on non-binary objects
+  - Addition of plurals in file/folder filtering
+
+  folderview version 0.4.0
+
+  - Added zeroclip swf clipboard object into modal
+  - Fixed modal alignments
+  - highlight.js in modal working properly
+
+  folderview version 0.3.0
+
+  - Added bootstrap modal for file viewing
+  - Initial highlight.js
+
+  folderview version 0.1.0
+
+  - Initial vbscript/folder output

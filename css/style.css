@@ -2,9 +2,9 @@ html,body{background:#fff;height:100%}
 :focus{outline:0 !important}
 .container-fluid,.row-fluid{height:100%}
 
-.navbar{box-shadow:0 3px 5px 0 rgba(0,0,0,0.6)}
-.nav li{padding:6px 0}
+.navbar{box-shadow:0 3px 5px 0 rgba(0,0,0,0.4)}
 .brand img{padding:0 0 0 25px}
+.nav li{padding:6px 0}
 #dirOutput{font-size:16pt;color:#F6F6F6;text-shadow:1px 1px 0 #000}
 
 .btn-success-hover{background-position:0 -15px;-webkit-transition:background-position .1s linear;-moz-transition:background-position .1s linear;-o-transition:background-position .1s linear;transition:background-position .1s linear;color:#fff;background-color:#51a351;*background-color:#499249}
