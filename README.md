@@ -1,7 +1,7 @@
 Folderview - The ASP-generated foldertree
 --------------
 
-**Current Version: 0.65**
+**Current Version: 0.6.5.2**
 
 Folderview recursively scans a given folder(s) and creates a navigable folder tree in your browser
 
