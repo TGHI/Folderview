@@ -16,6 +16,6 @@ Dim arrImageExtensions : arrImageExtensions = array("jpg","jpeg","png","gif")
 Dim arrDisallowedExtensions : arrDisallowedExtensions = array("db")
 
 %>
-<!--#include file="folderview/lang/en-CA/en-CA.asp"-->
-<!--#include file="folderview/src/folders.asp"-->
-<!--#include file="folderview/src/layout.asp"-->
+<!--#include file="lang/en-CA/en-CA.asp"-->
+<!--#include file="src/folders.asp"-->
+<!--#include file="src/layout.asp"-->
