@@ -1,101 +1,127 @@
-$(document).ready(function () {
+var fldrview = function () {
 
-  var modalObj = document.getElementById('modalFrame'),
-    modalBody = document.getElementById('modalBody'),
-    folderToggle = $('.toggle');
+	var parentFolders = $('#masterList .toggle'),
+		modalObj = document.getElementById('modalFrame'),
+		modalBody = document.getElementById('modalBody');
 
-  $(".modal-launch").each(function (e) {
+	return {
 
-    var filePath = $(this).attr('data-remote'),
-      fileSize = $(this).attr('data-file-size'),
-      fileMimetype = $(this).attr('data-mime-type'),
-      fileType = fileMimetype.substr(0, fileMimetype.indexOf('/')),
-      fileExtension = fileMimetype.substr(fileMimetype.indexOf('/') + 1, fileMimetype.length),
-      fileName = filePath.substr(filePath.lastIndexOf('/') + 1, filePath.length);
+		init: function () {
+			
+						
 
+			this.modalObj();
+			this.buildTree();
+			this.toolbar();
+		},
 
-    if (fileMimetype !== "") {
-      $(this).click(function (a) {
-        a.preventDefault();
-        a.stopPropagation();
-        $(modalObj).modal('toggle');
-        $(modalObj).find('.modal-header h3').html(fileName + ' <small>(' + fileSize + ')</small>');
-        $(modalObj).find('.modal-footer .raw-view').attr('href', filePath);
+		buildTree: function () {
 
-        if (fileType == "text") {
-          $(modalBody).load(filePath, function () {
-            hljs.highlightBlock(modalBody);
-            createClipButton('#clip_button');
-          })
-        }
-        if (fileType == "image") {
-          $(modalBody).html('<img src="' + filePath + '" alt="" />')
-        }
-      })
-    }
-  })
+			this.button = parentFolders.each(function () {
+				this.subfolder = $(this).siblings('ul:first');
+				this.parentfolder = this.subfolder.parent().find('ul:first');
+				this.parentPath = this.parentfolder.parent().attr('data-type-path');
+				this.icon = this.subfolder.parent().find('.icon-folder-close:first');
+			})
 
-  $(modalObj).on('hidden', function () {
-    $(this).removeData('modal');
-    $('#clip_button').remove();
-  })
+			this.button.click(function () {
+				fldrview.treeNav(this.subfolder, this.parentPath, this.icon);
+			})
+		},
 
-  folderToggle.each(function (i, el) {
-    $(el).click(function () {
-      folderNav($(el));
-    })
-  })
+		treeNav: function (subfolder, folderpath, icon) {
 
-  $('#openAll').on('click', function () {
-    folderNav(folderToggle, "expand")
-  })
-  $('#closeAll').on('click', function () {
-    folderNav(folderToggle, "collapse")
-  })
+			subfolder.stop(!0, !0).animate({
+				'opacity': 'toggle',
+				'height': 'toggle'
+			}, 350).toggleClass('open');
 
-})
+			icon.toggleClass('icon-folder-open');
 
-function createClipButton(id) {
+			this.setPath(folderpath);
+		},
 
-  $('.modal-footer').append('<a class="btn btn-success" aria-hidden="true" id="clip_button" data-clipboard-target="modalBody"><i class="icon-pencil icon-white"></i>Copy to Clipboard</a>');
+		setPath: function (pathName) {
 
-  var clip = new ZeroClipboard($(id), {
-    moviePath: "folderview/swf/ZeroClipboard.swf",
-    hoverClass: "btn-success-hover",
-    activeClass: "active"
-  })
-    .on('complete', function (client, args) {
-    $(id).html('<i class="icon-ok-sign icon-white"></i> Text Copied');
-  });
-}
+			var formattedFolders = pathName.substr(0, pathName.lastIndexOf('\\') + 1);
+			var formattedCurrentDirectory = pathName.substr(pathName.lastIndexOf('\\') + 1, pathName.length);
+			$('#dirOutput').html(formattedFolders).append("<span>" + formattedCurrentDirectory + "</span>");
+			$('#dirOutput span').animate({'opacity': '1','margin-top': '0px'})
+		},
 
-function folderNav(nav, intent, derp) {
+		modalObj: function () {
 
-  var subFolder = nav.parent().find('ul:first'),
-    icon = nav.parent().find('.icon-plus:first');
+			$(".modal-launch").each(function (e) {
 
-  if (!intent) {
-    nav.siblings('ul:first').stop(!0, !0).animate({
-      'opacity': 'toggle',
-      'height': 'toggle'
-    }, 350).toggleClass('open');
-    icon.toggleClass('icon-minus');
-    setPath(subFolder.parent().attr('data-type-path'));
-  }
+				var file = fldrview.fileAttributes($(this));
 
-  if (intent == "collapse") {
-    subFolder.css('display', 'none').removeClass('open');
-    icon.removeClass('icon-minus');
-  }
-  if (intent == "expand") {
-    subFolder.css('display', 'block').addClass('open');
-    icon.addClass('icon-minus');
-  }
-}
+				if (file.mimetype) {
+					$(this).click(function (a) {
+						a.preventDefault();
+						a.stopPropagation();
+						$(modalObj).modal('toggle');
+						$(modalObj).find('.modal-header h3').html(file.name + ' <small>(' + file.size + ')</small>');
 
-function setPath(pathName) {
-  var formattedFolders = pathName.substr(0, pathName.lastIndexOf('\\') + 1);
-  var formattedCurrentDirectory = pathName.substr(pathName.lastIndexOf('\\') + 1, pathName.length);
-  $('#dirOutput').html(formattedFolders).append("<span style=\"opacity:0;position:absolute;top:8px;width:auto;color:#55bad8;white-space:nowrap\">" + formattedCurrentDirectory + "</span>");
-  $('#dirOutput span').animate({'opacity':'1','top':'16px'})
-}
+						if (file.type == "text") {
+							$(modalBody).load(file.path, function () {
+								hljs.highlightBlock(modalBody);
+								fldrview.createClipButton();
+							})
+						}
+
+						if (file.type == "image") {
+							modalBody.innerHTML = '<img src="' + file.path + '" alt="" />';
+						}
+					})
+				}
+			})
+		},
+
+		createClipButton: function () {
+
+			var button = $('<a class="btn btn-success" id="clipboard_button" aria-hidden="true" data-clipboard-target="modalBody"><i class="icon-pencil icon-white"></i> ' + copyToClipboard + '</a>');
+
+			$(modalObj).find('.modal-footer').append(button);
+
+			var clip = new ZeroClipboard(button, {
+				moviePath: "folderview/swf/ZeroClipboard.swf",
+				hoverClass: "btn-success-hover",
+				activeClass: "active"
+			})
+				.on('complete', function (client, args) {
+					$('#clipboard_button').html('<i class="icon-ok-sign icon-white"></i> ' + textCopiedToClipboard);
+				});
+
+			$(modalObj).on('hidden', function () {
+				$(this).removeData('modal');
+				button.remove();
+			})
+		},
+
+		fileAttributes: function (file) {
+
+			file.path = file.attr('data-remote');
+			file.size = file.attr('data-file-size');
+			file.mimetype = file.attr('data-mime-type');
+			file.type = file.mimetype.substr(0, file.mimetype.indexOf('/'));
+			file.name = file.text();
+
+			return file
+		},
+
+		toolbar : function(){
+
+			$('#closeAll').on('click', function () {
+				parentFolders.parent().find('ul:first').css('display', 'none').removeClass('open');
+				$('.icon-folder-close').removeClass('icon-folder-open');
+			})
+
+			$('#openAll').on('click', function () {
+				parentFolders.parent().find('ul:first').css('display', 'block').addClass('open');
+				$('.icon-folder-close').addClass('icon-folder-open');
+			})
+		}
+	}
+}()
+
+fldrview.init()

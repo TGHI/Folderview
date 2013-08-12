@@ -1,7 +1,7 @@
 Folderview - The ASP-generated foldertree
 --------------
 
-**Current Version: 0.6.5.2**
+**Current Version: 0.7.1**
 
 Folderview recursively scans a given folder(s) and creates a navigable folder tree in your browser
 
@@ -13,21 +13,27 @@ How-to
 Pick your directory in **default.asp**
 
 ```
-  ListFolderContents(Server.MapPath("your/directory/here"))
+  CONST FOLDERVIEW_PATH = "path/of/desired/directory"
 ```
 
 Foldertree opens user-specified files (images and text) in a modal window for viewing instead of simply opening them as a hyperlink.
 
 ![ScreenShot](https://raw.github.com/TGHI/Folderview/master/screenshots/screenshot-modal.png)
 
-This is found in **src/folders.asp**
+**default.asp**
 
 ```
-  allowedTextExtensions = array("txt","js","css","xml")
-  allowedImageExtensions = array("jpg","png","gif")
+  arrTextExtensions = array("txt","js","css","xml","bat","ini")
+  arrImageExtensions = array("jpg","jpeg","png","gif")
 ```
 
-Allowed text extensions will also have automatic syntax highlighting within the modal.
+Extensions can also be disallowed
+
+```
+arrDisallowedExtensions = array("db","exe")
+```
+
+Allowed text extensions will also have automatic highlighting within the modal.
 
 ![ScreenShot](https://raw.github.com/TGHI/Folderview/master/screenshots/screenshot-highlight.png)
 
