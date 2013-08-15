@@ -1,80 +1,102 @@
 var fldrview = function () {
 
-	var parentFolders = $('#masterList .toggle'),
-		modalObj = document.getElementById('modalFrame'),
+	var modalObj = document.getElementById('modalFrame'),
 		modalBody = document.getElementById('modalBody');
 
 	return {
 
 		init: function () {
-			
-						
 
-			this.modalObj();
 			this.buildTree();
 			this.toolbar();
 		},
 
 		buildTree: function () {
 
-			this.button = parentFolders.each(function () {
+			var folderObjects = $('#masterList .btn.toggle'),
+				fileObjects = $(".modal-launch");
+
+			this.folders = folderObjects.each(function () {
 				this.subfolder = $(this).siblings('ul:first');
-				this.parentfolder = this.subfolder.parent().find('ul:first');
-				this.parentPath = this.parentfolder.parent().attr('data-type-path');
+				this.parentFolder = this.subfolder.parent().find('ul:first');
+				this.parentPath = this.parentFolder.parent().attr('data-type-path');
 				this.icon = this.subfolder.parent().find('.icon-folder-close:first');
+				this.name = $(this).attr('data-folder-name');
+			}).click(function () {
+				fldrview.traverse(this);
 			})
 
-			this.button.click(function () {
-				fldrview.treeNav(this.subfolder, this.parentPath, this.icon);
+			this.files = fileObjects.each(function () {
+				this.path = $(this).attr('data-remote');
+				this.size = $(this).attr('data-file-size');
+				this.mimetype = $(this).attr('data-mime-type');
+				if (this.mimetype) this.type = this.mimetype.substr(0, this.mimetype.indexOf('/'));
+				this.name = $(this).text();
+			}).click(function (e) {
+				fldrview.launch(this, e);
 			})
+
 		},
 
-		treeNav: function (subfolder, folderpath, icon) {
+		jumpto: function (folder, searchObj) {
 
-			subfolder.stop(!0, !0).animate({
+			var found = this.folders.siblings().find('span a:contains(' + folder + ')');
+
+			if (found.length > 0) {
+
+				found.addClass('highlight');
+				found.icon = found.parents().siblings().find('> .icon-folder-close');
+				found.subfolder = found.parent().siblings('.sub-folder');
+				found.path = null;
+
+				found.parent().parents('#masterList li ul').stop(!0, !0).addClass('open').slideDown();
+
+				this.traverse(found);
+			}
+		},
+
+		traverse: function (branch) {
+
+			branch.subfolder.stop(!0, !0).animate({
 				'opacity': 'toggle',
 				'height': 'toggle'
 			}, 350).toggleClass('open');
 
-			icon.toggleClass('icon-folder-open');
+			branch.icon.toggleClass('icon-folder-open');
 
-			this.setPath(folderpath);
+			if (branch.parentPath) this.setPath(branch.parentPath);
 		},
 
-		setPath: function (pathName) {
+		setPath: function (path) {
 
-			var formattedFolders = pathName.substr(0, pathName.lastIndexOf('\\') + 1);
-			var formattedCurrentDirectory = pathName.substr(pathName.lastIndexOf('\\') + 1, pathName.length);
+			var formattedFolders = path.substr(0, path.lastIndexOf('\\') + 1);
+			var formattedCurrentDirectory = path.substr(path.lastIndexOf('\\') + 1, path.length);
 			$('#dirOutput').html(formattedFolders).append("<span>" + formattedCurrentDirectory + "</span>");
-			$('#dirOutput span').animate({'opacity': '1','margin-top': '0px'})
+			$('#dirOutput span').animate({
+				'opacity': '1',
+				'margin-top': '0px'
+			})
 		},
 
-		modalObj: function () {
+		launch: function (file, action) {
 
-			$(".modal-launch").each(function (e) {
+			if (file.mimetype) {
+				action.preventDefault();
+				action.stopPropagation();
+				$(modalObj).modal('toggle');
+				$(modalObj).find('.modal-header h3').html(file.name + ' <small>(' + file.size + ')</small>');
 
-				var file = fldrview.fileAttributes($(this));
-
-				if (file.mimetype) {
-					$(this).click(function (a) {
-						a.preventDefault();
-						a.stopPropagation();
-						$(modalObj).modal('toggle');
-						$(modalObj).find('.modal-header h3').html(file.name + ' <small>(' + file.size + ')</small>');
-
-						if (file.type == "text") {
-							$(modalBody).load(file.path, function () {
-								hljs.highlightBlock(modalBody);
-								fldrview.createClipButton();
-							})
-						}
-
-						if (file.type == "image") {
-							modalBody.innerHTML = '<img src="' + file.path + '" alt="" />';
-						}
+				if (file.type == "text") {
+					$(modalBody).load(file.path, function () {
+						hljs.highlightBlock(modalBody);
+						fldrview.createClipButton();
 					})
 				}
-			})
+
+				if (file.type == "image") {
+					modalBody.innerHTML = '<img src="' + file.path + '" alt="" />';
+				}
+			}
 		},
 
 		createClipButton: function () {
@@ -98,28 +120,37 @@ var fldrview = function () {
 			})
 		},
 
-		fileAttributes: function (file) {
-
-			file.path = file.attr('data-remote');
-			file.size = file.attr('data-file-size');
-			file.mimetype = file.attr('data-mime-type');
-			file.type = file.mimetype.substr(0, file.mimetype.indexOf('/'));
-			file.name = file.text();
-
-			return file
-		},
-
-		toolbar : function(){
+		toolbar: function () {
 
 			$('#closeAll').on('click', function () {
-				parentFolders.parent().find('ul:first').css('display', 'none').removeClass('open');
+				fldrview.folders.parent().find('ul:first').css('display', 'none').removeClass('open');
 				$('.icon-folder-close').removeClass('icon-folder-open');
 			})
 
 			$('#openAll').on('click', function () {
-				parentFolders.parent().find('ul:first').css('display', 'block').addClass('open');
+				fldrview.folders.parent().find('ul:first').css('display', 'block').addClass('open');
 				$('.icon-folder-close').addClass('icon-folder-open');
 			})
+			$('#clearFound').click(function () {
+				$('*').removeClass('highlight');
+			})
+
+			$("#folderSearch").submit(function (e) {
+
+				e.preventDefault();
+				e.stopPropagation();
+
+				var searchObj = $("input:first"),
+					searchValue = searchObj.val();
+
+				if (searchValue.length < 3) {
+					searchObj.tooltip('show')
+				} else {
+					fldrview.jumpto(searchValue, searchObj)
+					searchObj.tooltip('hide');
+				}
+			})
+
 		}
 	}
 }()

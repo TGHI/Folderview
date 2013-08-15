@@ -28,7 +28,7 @@ Sub ListFolderContents(path)
 	End If
 
 	Response.Write("<li class=""root-folder"" data-type-path=""" & objFolder.path &""">" & vbCrLf)
-	Response.Write("  <span class=""btn btn-info btn-mini" & strToggle & """><i class=""icon-folder-close icon-white""></i></span><span class=""folder-name" & strToggle & """><a href=""#"">" & objFolder.Name & "</a></span>")
+	Response.Write("  <span class=""btn btn-info btn-mini" & strToggle & """ data-folder-name=""" & objFolder.Name & """><i class=""icon-folder-close icon-white""></i></span><span class=""folder-name" & strToggle & """><a href=""#"">" & objFolder.Name & "</a></span>")
 
 	If strSubFolderCount = 0 And strFileCount = 0 Then
 		Response.Write("<span class=""label label-warning"">" & LABEL_EMPTY & "</span>")
@@ -126,8 +126,6 @@ Function createFileItem(strFileName, strFileDateLastModified, strFileURL, strFil
 
 	Dim boolFound, strExtensionName, strFileMimeType, strMatchedExtension, strMatchedExtensionX
 
-
-	
 	strExtensionName = getExtension(strFileName)
 
 	For Each strMatchedExtension In arrTextExtensions

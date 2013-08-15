@@ -10,14 +10,14 @@
 <head>
 <title><% response.write(PROGRAM_NAME) %></title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="folderview/css/bootstrap.min.css" type="text/css" />
-<link rel="stylesheet" href="folderview/css/bootstrap-responsive.min.css" type="text/css" />
-<link rel="stylesheet" href="folderview/css/highlight.css" type="text/css" />
-<link rel="stylesheet" href="folderview/css/style.css" type="text/css" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript" src="folderview/js/highlight.min.js"></script>
-<script type="text/javascript" src="folderview/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="folderview/js/zeroclipboard.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="css/bootstrap-responsive.min.css" type="text/css" />
+<link rel="stylesheet" href="css/highlight.css" type="text/css" />
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/highlight.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/zeroclipboard.min.js"></script>
 <script type="text/javascript">
 
 	// translatable strings in js
@@ -31,7 +31,7 @@
 <div class="navbar-wrapper">
   <div id="navbar" class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
-      <div class="brand"><img src="folderview/img/brand.png" alt=""/></div>
+      <div class="brand"><img src="img/brand.png" alt=""/></div>
       <ul class="nav">
         <li class="divider-vertical"></li>
         <li><a id="dirOutput" href="#"><% response.write(strWorkingDir) %></a></li>
@@ -45,10 +45,17 @@
       <div class="navbar" id="toolbar">
         <div class="navbar-inner">
           <div class="pull-left btn-group">
-            <button class="btn btn-small" id="openAll"><i class="icon-folder-open"></i> <% response.write(EXPAND_ALL) %></button>
-            <button class="btn btn-small" id="closeAll"><i class="icon-folder-close"></i> <% response.write(COLLAPSE_ALL) %></button>
+            <button class="btn" id="openAll"><i class="icon-folder-open"></i> <% response.write(EXPAND_ALL) %></button>
+            <button class="btn" id="closeAll"><i class="icon-folder-close"></i> <% response.write(COLLAPSE_ALL) %></button>
           </div>
           <ul class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+              <form id="folderSearch" class="navbar-form pull-left">
+                <input type="text" id="searchField" data-trigger="manual" data-toggle="tooltip" title="Search must be at least 3 characters." placeholder="Search for folder..." />
+                <a class="btn" id="clearFound"><i class="icon-remove"></i></a>
+              </form>
+            </li>
             <li class="divider-vertical"></li>
           </ul>
         </div>
@@ -69,8 +76,8 @@
 </div>
 <div class="bottom-shadow"></div>
 <div class="fldrview-copyright">
-  <a class="modal-launch" data-mime-type="text/txt" data-file-size="woo, fldrvw!" data-target="#modalFrame" href="#" data-remote="folderview/changelog.txt"><% response.write(PROGRAM_NAME) %> &middot; <% response.write(PROGRAM_VERSION) %></a>
+  <a class="modal-launch" data-mime-type="text/txt" data-file-size="woo, fldrvw!" data-target="#modalFrame" href="#" data-remote="changelog.txt"><% response.write(PROGRAM_NAME) %> &middot; <% response.write(PROGRAM_VERSION) %></a>
 </div>
-<script type="text/javascript" src="folderview/js/main.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

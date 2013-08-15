@@ -1,12 +1,17 @@
 html,body{background:#F3F4F6 url(../img/noisy.png)}
 :focus{outline:0 !important}
-
 .empty-folder:hover{cursor:no-drop}
 li form{padding:0;border:0;margin:0}
+.highlight{background: #fffcb7;color: #444336}
 
-.navbar-inner a{color:#55BAD8}
 .brand img{padding:0 0 0 25px}
+
 #navbar .nav li{padding:6px 0}
+.navbar{position:fixed}
+.navbar-inner a{color:#55BAD8}
+
+#toolbar{top:54px;background:#eee;right:0;left:0;z-index:1031}
+#toolbar .navbar-inner{border-radius:0;padding:2px 8px 4px 8px;box-shadow:inset 0 -1px 0 #ccc, 0 3px 5px rgba(0,0,0,.1)}
 
 #dirOutput{font-size:16pt;color:#F6F6F6;text-shadow:1px 1px 0 #000;text-transform:lowercase}
 #dirOutput:hover{cursor:default}
@@ -15,9 +20,6 @@ li form{padding:0;border:0;margin:0}
 .btn-success-hover{background-position:0 -15px;-webkit-transition:background-position .1s linear;-moz-transition:background-position .1s linear;-o-transition:background-position .1s linear;transition:background-position .1s linear;color:#fff;background-color:#51a351;*background-color:#499249}
 
 .container-fluid,.row-fluid{margin:0;padding:0}
-
-#toolbar{position:fixed;top:54px;background:#eee;right:0;left:0;z-index:1001}
-#toolbar .navbar-inner{border-radius:0;padding:2px 8px 1px 8px;box-shadow:inset 0 -1px 0 #ccc, 0 3px 5px rgba(0,0,0,.1)}
 
 .modal{width:1000px;margin-left:-470px}
 .modal pre{margin:10px;padding:0}
