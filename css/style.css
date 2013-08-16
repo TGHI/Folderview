@@ -32,12 +32,11 @@ li form{padding:0;border:0;margin:0}
 
 #masterList{position:relative;margin:0;padding:20px;top:100px}
 #masterList *{list-style-type:none}
-#masterList a{text-decoration:none;color:#353535}
 
 .sub-folder > li{padding:3px 0;margin:5px 0 5px 10px}
 .sub-folder.open{border-left:1px solid #d5d5d5;box-shadow:inset 1px 0 0 #fff}
 
-.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {background-color:#55BAD8;background-image:none;filter:none;color:#fff !important}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus,.typeahead.dropdown-menu > li > a:hover, .typeahead.dropdown-menu > li > a:focus,.typeahead li.active a{background-color:#55bad8;background-image:none;filter:none;color:#fff !important}
 
 #global-zeroclipboard-html-bridge{position:fixed !important}
 
