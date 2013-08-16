@@ -52,7 +52,7 @@
             <li class="divider-vertical"></li>
             <li>
               <form id="folderSearch" class="navbar-form pull-left">
-                <input type="text" id="searchField" data-trigger="manual" data-toggle="tooltip" title="Search must be at least 3 characters." placeholder="Search for folder..." />
+                <input type="text" data-provide="typeahead" id="searchField" autocomplete="off" data-trigger="manual" data-toggle="tooltip" title="Search must be at least 3 characters." placeholder="Search for folder..." />
                 <a class="btn" id="clearFound"><i class="icon-remove"></i></a>
               </form>
             </li>
@@ -78,6 +78,6 @@
 <div class="fldrview-copyright">
   <a class="modal-launch" data-mime-type="text/txt" data-file-size="woo, fldrvw!" data-target="#modalFrame" href="#" data-remote="changelog.txt"><% response.write(PROGRAM_NAME) %> &middot; <% response.write(PROGRAM_VERSION) %></a>
 </div>
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/folderview.js"></script>
 </body>
 </html>
