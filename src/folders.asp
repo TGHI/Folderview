@@ -28,7 +28,7 @@ Sub ListFolderContents(path)
 	End If
 
 	Response.Write("<li class=""root-folder"" data-type-path=""" & objFolder.path &""">" & vbCrLf)
-	Response.Write("  <span class=""btn btn-info btn-mini" & strToggle & """ data-folder-name=""" & objFolder.Name & """><i class=""icon-folder-close icon-white""></i></span><span class=""folder-name" & strToggle & """><a href=""#"">" & objFolder.Name & "</a></span>")
+	Response.Write("  <span class=""btn btn-info btn-mini" & strToggle & """ data-folder-name=""" & objFolder.Name & """><i class=""icon-folder-close icon-white""></i></span><span class=""folder-name" & strToggle & """>" & objFolder.Name & "</span>")
 
 	If strSubFolderCount = 0 And strFileCount = 0 Then
 		Response.Write("<span class=""label label-warning"">" & LABEL_EMPTY & "</span>")
@@ -55,7 +55,6 @@ Sub ListFolderContents(path)
 
 		Response.Write(vbCrLf & "  <ul class=""sub-folder"">" & vbCrLf)
 
-		
 		For Each objSubFolder In objFolder.SubFolders
 			ListFolderContents(objSubFolder.Path)
 		Next
@@ -152,7 +151,7 @@ Function createFileItem(strFileName, strFileDateLastModified, strFileURL, strFil
 		"    <button class=""btn dropdown-toggle"" data-toggle=""dropdown""><i class=""caret""></i></button>" & vbCrLf &_
 		"    <ul class=""dropdown-menu"">" & vbCrLf &_
 		"      <li class=""nav-header"">" & FILE_OPTIONS & "</li>" & vbCrLf &_
-		"      <li><a href=""folderview/src/save.asp?file=" & strFileURL & """><i class=""icon-download""></i> " & DOWNLOAD_FILE &  "</a></li>" & vbCrLf &_
+		"      <li><a href=""src/save.asp?file=" & strFileURL & """><i class=""icon-download""></i> " & DOWNLOAD_FILE &  "</a></li>" & vbCrLf &_
 		"      <li><a href=""" & strFileURL & """ target=""_blank""><i class=""icon-share""></i> " & OPEN_IN_NEW_WINDOW & "</a></li>" & vbCrLf &_
 		"    </ul>" & vbCrLf &_
 		"  </div>" & vbCrLf &_
