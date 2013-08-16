@@ -7,7 +7,7 @@
 Option Explicit
 
 CONST PROGRAM_NAME = "fldrview"
-CONST PROGRAM_VERSION = "0.8"
+CONST PROGRAM_VERSION = "0.8.2"
 
 CONST FOLDERVIEW_PATH = "projects"
 
