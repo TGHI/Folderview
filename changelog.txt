@@ -1,9 +1,15 @@
 
   @package	fldrvw/folderview
   @copyright	Copyright (C) 2013 Justin Renaud (tghidsgn@gmail.com)
-  @version	0.8 (2013-8-15)
+  @version	0.8.1 (2013-8-15)
   @license	GNU General Public License version 3 or later
 
+
+  folderview version 0.8.2
+
+  - New autocomplete for folder search
+  - removed foldername links
+  - fixed bad behaviour while drilling folders after search
 
   folderview version 0.8
 
